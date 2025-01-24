@@ -11,6 +11,7 @@ export async function switchCommand(interaction: CommandInteraction): Promise<vo
     const currentServer = (await promisify(exec)("pm2 status"))
         .stdout
         .split("\n")
+        .filter((line) => !line.includes("mc-server-switcher"))
         .find((line) => line.includes("online"));
 
     if (currentServer === undefined) {
