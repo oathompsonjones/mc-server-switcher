@@ -25,7 +25,9 @@ export async function switchCommand(interaction: CommandInteraction): Promise<vo
 
     const serverOn = currentServer.includes("fabric-1.20.1") ? 0 : 1;
     const serverOff = (serverOn + 1) % 2;
-    const status = await promisify(exec)(`pm2 stop ${serverOn} && pm2 start ${serverOff}`);
+
+    await promisify(exec)(`pm2 stop ${serverOn}`);
+    const status = await promisify(exec)(`pm2 start ${serverOff}`);
 
     await interaction.createMessage({
         content: `\`\`\`\n${status.stdout}\n\`\`\``,
