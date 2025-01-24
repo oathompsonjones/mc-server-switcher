@@ -23,8 +23,8 @@ export async function switchCommand(interaction: CommandInteraction): Promise<vo
         return;
     }
 
-    const serverOn = currentServer.includes("fabric-1.20.1") ? "fabric-1.20.1" : "forge-1.12.2";
-    const serverOff = serverOn === "fabric-1.20.1" ? "forge-1.12.2" : "fabric-1.20.1";
+    const serverOn = currentServer.includes("fabric-1.20.1") ? 0 : 1;
+    const serverOff = (serverOn + 1) % 2;
     const status = await promisify(exec)(`pm2 stop ${serverOn} && pm2 start ${serverOff}`);
 
     await interaction.createMessage({

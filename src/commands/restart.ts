@@ -9,7 +9,7 @@ import { promisify } from "util";
  */
 export async function restartCommand(interaction: CommandInteraction): Promise<void> {
     const server = interaction.data.options?.[0] !== undefined && "value" in interaction.data.options[0]
-        ? interaction.data.options[0].value as "fabric-1.20.1" | "forge-1.12.2"
+        ? interaction.data.options[0].value
         : null;
     const status = await promisify(exec)(`pm2 restart ${server}`);
 

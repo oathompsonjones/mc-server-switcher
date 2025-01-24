@@ -30,11 +30,11 @@ client.on("ready", () => {
         choices: [
             {
                 name: "Fabric 1.20.1",
-                value: "fabric-1.20.1",
+                value: "0",
             },
             {
                 name: "Forge 1.12.2",
-                value: "forge-1.12.2",
+                value: "1",
             },
         ],
         description: "The server name",
