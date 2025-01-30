@@ -1,5 +1,4 @@
 import type { CommandInteraction } from "eris";
-import { Constants } from "eris";
 import { exec } from "child_process";
 import { promisify } from "util";
 
@@ -15,10 +14,7 @@ export async function switchCommand(interaction: CommandInteraction): Promise<vo
         .find((line) => line.includes("online"));
 
     if (currentServer === undefined) {
-        await interaction.createMessage({
-            content: "No server is currently running.",
-            flags: Constants.MessageFlags.EPHEMERAL,
-        });
+        await interaction.createMessage("No server is currently running.");
 
         return;
     }
@@ -29,8 +25,5 @@ export async function switchCommand(interaction: CommandInteraction): Promise<vo
     await promisify(exec)(`pm2 stop ${serverOn}`);
     const status = await promisify(exec)(`pm2 start ${serverOff}`);
 
-    await interaction.createMessage({
-        content: `\`\`\`\n${status.stdout}\n\`\`\``,
-        flags: Constants.MessageFlags.EPHEMERAL,
-    });
+    await interaction.createMessage(`\`\`\`\n${status.stdout}\n\`\`\``);
 }

@@ -1,5 +1,4 @@
 import type { CommandInteraction } from "eris";
-import { Constants } from "eris";
 
 /**
  * Pings the bot.
@@ -8,9 +7,6 @@ import { Constants } from "eris";
 export async function pingCommand(interaction: CommandInteraction): Promise<void> {
     const start = Date.now();
 
-    await interaction.createMessage({
-        content: "Pong!",
-        flags: Constants.MessageFlags.EPHEMERAL,
-    });
+    await interaction.createMessage("Pong!");
     await interaction.editOriginalMessage(`Pong! ${Date.now() - start}ms`);
 }

@@ -1,5 +1,4 @@
 import type { CommandInteraction } from "eris";
-import { Constants } from "eris";
 import { exec } from "child_process";
 import { promisify } from "util";
 
@@ -10,8 +9,5 @@ import { promisify } from "util";
 export async function statusCommand(interaction: CommandInteraction): Promise<void> {
     const status = await promisify(exec)("pm2 status");
 
-    await interaction.createMessage({
-        content: `\`\`\`\n${status.stdout}\n\`\`\``,
-        flags: Constants.MessageFlags.EPHEMERAL,
-    });
+    await interaction.createMessage(`\`\`\`\n${status.stdout}\n\`\`\``);
 }

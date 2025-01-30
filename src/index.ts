@@ -127,10 +127,7 @@ client.on("interactionCreate", (interaction) => {
         case "restart":
         case "start":
         case "stop":
-            void interaction.createMessage({
-                content: "You do not have permission to run this command.",
-                flags: Constants.MessageFlags.EPHEMERAL,
-            });
+            void interaction.createMessage("You do not have permission to run this command.");
             break;
     }
 });
